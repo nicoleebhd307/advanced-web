@@ -17,7 +17,12 @@ const upload = multer(); // parse multipart/form-data
 app.use(cors());
 app.use(morgan("combined"));
 app.use(cookieParser());
-app.use(session({ secret: "Shh, its a secret!", resave: false, saveUninitialized: true }));
+app.use(session({
+  secret: "Shh, its a secret!",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { sameSite: "lax", httpOnly: true }
+}));
 app.use(express.json()); // handles application/json
 app.use(express.urlencoded({ extended: true })); // handles x-www-form-urlencoded
 
@@ -27,6 +32,7 @@ client.connect();
 const database = client.db("FashionData");
 const fashionCollection = database.collection("Fashion");
 const userCollection = database.collection("User");
+const product63Collection = database.collection("Product63");
 
 // --- Routes ---
 app.get("/", (req, res) => {
@@ -156,6 +162,74 @@ app.get("/contact", cors(), (req, res) => {
     res.send("Welcome to this page for the first time!");
   }
 });
+
+// ======================= ex - 63: Shopping Cart (Session) =======================
+
+const SEED_PRODUCTS_63 = [
+  { name: "Nhẫn Kim Cương Solitaire Classic", price: 15900000, image: "https://picsum.photos/seed/ring1/300/300", description: "Nhẫn kim cương 1 viên chủ 0.3ct, vàng trắng 18K", stock: 20, carat: 0.3, material: "Vàng trắng 18K", clarity: "VS1", color: "G" },
+  { name: "Nhẫn Kim Cương Halo Rose Gold", price: 28500000, image: "https://picsum.photos/seed/ring2/300/300", description: "Nhẫn kim cương viên chủ 0.5ct, halo đá phụ, vàng hồng 18K", stock: 15, carat: 0.5, material: "Vàng hồng 18K", clarity: "VVS2", color: "F" },
+  { name: "Nhẫn Kim Cương Eternity Band", price: 42000000, image: "https://picsum.photos/seed/ring3/300/300", description: "Nhẫn eternity toàn kim cương 1.0ct tổng, vàng 18K", stock: 10, carat: 1.0, material: "Vàng vàng 18K", clarity: "VS2", color: "H" },
+  { name: "Nhẫn Kim Cương Princess Cut", price: 67000000, image: "https://picsum.photos/seed/ring4/300/300", description: "Nhẫn kim cương cắt vuông Princess 1.2ct, bạch kim Pt950", stock: 8, carat: 1.2, material: "Bạch kim Pt950", clarity: "VVS1", color: "E" },
+  { name: "Nhẫn Kim Cương Cushion Halo", price: 89000000, image: "https://picsum.photos/seed/ring5/300/300", description: "Nhẫn kim cương cắt Cushion 1.5ct, halo vi kim cương, vàng trắng 18K", stock: 6, carat: 1.5, material: "Vàng trắng 18K", clarity: "IF", color: "D" },
+  { name: "Nhẫn Kim Cương Oval Solitaire", price: 125000000, image: "https://picsum.photos/seed/ring6/300/300", description: "Nhẫn kim cương cắt Oval 2.0ct, bạch kim Pt950, chứng nhận GIA", stock: 4, carat: 2.0, material: "Bạch kim Pt950", clarity: "FL", color: "D" },
+];
+
+// GET /ex63/products — auto-seed if empty
+app.get("/ex63/products", async (req, res) => {
+  try {
+    let products = await product63Collection.find({}).toArray();
+    if (products.length === 0) {
+      await product63Collection.insertMany(SEED_PRODUCTS_63);
+      products = await product63Collection.find({}).toArray();
+    }
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// GET /ex63/cart
+app.get("/ex63/cart", (req, res) => {
+  res.json({ cart: req.session.cart63 || [] });
+});
+
+// POST /ex63/cart/add — body: { productId, qty }
+app.post("/ex63/cart/add", async (req, res) => {
+  const { productId, qty } = req.body;
+  if (!productId) return res.status(400).json({ success: false, message: "productId is required" });
+  try {
+    const product = await product63Collection.findOne({ _id: new ObjectId(productId) });
+    if (!product) return res.status(404).json({ success: false, message: "Product not found" });
+    if (!req.session.cart63) req.session.cart63 = [];
+    const cart = req.session.cart63;
+    const existingIndex = cart.findIndex(item => item._id === productId);
+    if (existingIndex >= 0) {
+      cart[existingIndex].qty += (parseInt(qty) || 1);
+    } else {
+      cart.push({ _id: productId, name: product.name, price: product.price, image: product.image, qty: parseInt(qty) || 1 });
+    }
+    req.session.cart63 = cart;
+    res.json({ success: true, cart: req.session.cart63 });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// PUT /ex63/cart/update — body: { items: [{ _id, name, price, image, qty }] }
+app.put("/ex63/cart/update", (req, res) => {
+  const { items } = req.body;
+  if (!Array.isArray(items)) return res.status(400).json({ success: false, message: "items must be an array" });
+  req.session.cart63 = items.filter(item => item.qty > 0);
+  res.json({ success: true, cart: req.session.cart63 });
+});
+
+// DELETE /ex63/cart/clear
+app.delete("/ex63/cart/clear", (req, res) => {
+  req.session.cart63 = [];
+  res.json({ success: true, message: "Cart cleared" });
+});
+
+// ======================= end ex - 63 =======================
 
 app.listen(port, () => {
   console.log(`My Server listening on port ${port}`);
