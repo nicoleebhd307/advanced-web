@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "price": 15,
+    "description": "A handbook of agile software craftsmanship.",
+    "image": "clean-code.png"
+  },
+  {
+    "id": 2,
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "price": 18,
+    "description": "Journey to mastery for modern programmers.",
+    "image": "pragmatic-programmer.png"
+  },
+  {
+    "id": 3,
+    "title": "Design Patterns",
+    "author": "Erich Gamma",
+    "price": 22,
+    "description": "Elements of reusable object-oriented software.",
+    "image": "design-patterns.png"
+  },
+  {
+    "id": 4,
+    "title": "Refactoring",
+    "author": "Martin Fowler",
+    "price": 20,
+    "description": "Improving the design of existing code.",
+    "image": "refactoring.jpg"
+  },
+  {
+    "id": 5,
+    "title": "You Don't Know JS",
+    "author": "Kyle Simpson",
+    "price": 14,
+    "description": "Deep dive into JavaScript core mechanisms.",
+    "image": "ydkjs.jpg"
+  },
+  {
+    "id": 6,
+    "title": "JavaScript: The Good Parts",
+    "author": "Douglas Crockford",
+    "price": 12,
+    "description": "Best features of JavaScript explained.",
+    "image": "good-parts.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Eloquent JavaScript",
+    "author": "Marijn Haverbeke",
+    "price": 16,
+    "description": "Modern introduction to programming with JS.",
+    "image": "eloquent-js.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Angular in Action",
+    "author": "Jeremy Wilken",
+    "price": 19,
+    "description": "Comprehensive guide to Angular framework.",
+    "image": "angular-action.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Learning React",
+    "author": "Alex Banks",
+    "price": 17,
+    "description": "Hands-on guide to building web apps with React.",
+    "image": "learning-react.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Node.js Design Patterns",
+    "author": "Mario Casciaro",
+    "price": 21,
+    "description": "Best practices for scalable Node.js apps.",
+    "image": "node-patterns.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Express in Action",
+    "author": "Evan Hahn",
+    "price": 18,
+    "description": "Web development with Express framework.",
+    "image": "express-action.jpg"
+  },
+  {
+    "id": 12,
+    "title": "MongoDB Basics",
+    "author": "Peter Membrey",
+    "price": 13,
+    "description": "Introduction to NoSQL database MongoDB.",
+    "image": "mongodb-basics.jpg"
+  },
+  {
+    "id": 13,
+    "title": "Docker Deep Dive",
+    "author": "Nigel Poulton",
+    "price": 23,
+    "description": "Everything about containerization with Docker.",
+    "image": "docker.jpg"
+  },
+  {
+    "id": 14,
+    "title": "Kubernetes Up & Running",
+    "author": "Kelsey Hightower",
+    "price": 25,
+    "description": "Orchestrating containers in production.",
+    "image": "kubernetes.jpg"
+  },
+  {
+    "id": 15,
+    "title": "System Design Interview",
+    "author": "Alex Xu",
+    "price": 24,
+    "description": "Guide to scalable system architecture interviews.",
+    "image": "system-design.jpg"
+  },
+  {
+    "id": 16,
+    "title": "Grokking Algorithms",
+    "author": "Aditya Bhargava",
+    "price": 18,
+    "description": "Illustrated guide to algorithms.",
+    "image": "grokking-algorithms.jpg"
+  },
+  {
+    "id": 17,
+    "title": "Cracking the Coding Interview",
+    "author": "Gayle Laakmann McDowell",
+    "price": 26,
+    "description": "189 programming interview questions.",
+    "image": "ctci.jpg"
+  },
+  {
+    "id": 18,
+    "title": "Deep Learning Basics",
+    "author": "Andrew Ng",
+    "price": 27,
+    "description": "Foundations of neural networks and AI.",
+    "image": "deep-learning.jpg"
+  },
+  {
+    "id": 19,
+    "title": "Python Crash Course",
+    "author": "Eric Matthes",
+    "price": 16,
+    "description": "Fast-paced intro to Python programming.",
+    "image": "python-crash.jpg"
+  },
+  {
+    "id": 20,
+    "title": "Automate the Boring Stuff with Python",
+    "author": "Al Sweigart",
+    "price": 15,
+    "description": "Practical Python automation projects.",
+    "image": "automate-python.jpg"
+  }
+]
