@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const multer = require("multer");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const SALT_ROUNDS = 10;
@@ -16,6 +17,7 @@ const upload = multer(); // parse multipart/form-data
 app.use(cors());
 app.use(morgan("combined"));
 app.use(cookieParser());
+app.use(session({ secret: "Shh, its a secret!", resave: false, saveUninitialized: true }));
 app.use(express.json()); // handles application/json
 app.use(express.urlencoded({ extended: true })); // handles x-www-form-urlencoded
 
@@ -142,6 +144,17 @@ app.get("/clear-cookie", cors(), (req, res) => {
   res.clearCookie("infor_limit1");
   res.clearCookie("infor_limit2");
   res.send("All cookies are removed");
+});
+
+// ex - 62
+app.get("/contact", cors(), (req, res) => {
+  if (req.session.visited != null) {
+    req.session.visited++;
+    res.send("You visited this page " + req.session.visited + " times");
+  } else {
+    req.session.visited = 1;
+    res.send("Welcome to this page for the first time!");
+  }
 });
 
 app.listen(port, () => {
