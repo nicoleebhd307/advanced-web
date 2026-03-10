@@ -42,7 +42,7 @@ BE: tổng hợp các WebServer và Database(MongoDB)
 ## Step-by-step create server  
 manually  create BE folder -> `cd my-server`
 1. `npm init` : create BE folder (`npm init -y` nếu chưa tạo được file package.json)  
-2. `npm install express` : install express    
+2. `npm install express cors morgan mongodb` : install libs      
 3. create index.js (manually)    
 4. `node .\index.js` : run BE   
 5. (làm mongodb thì ko cần)`ipconfig` : tim ip cua may <=> thay vafo localhost Wireless LAN adapter Wi-Fi:  
