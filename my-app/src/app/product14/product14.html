@@ -1,0 +1,27 @@
+<table *ngFor="let category of catalogService.getCategories()" border="1" cellpadding="5" cellspacing="0" style="width: 100%; margin-bottom: 20px;">
+    <tr>
+        <th style="width: 50%;">Ma Danh Muc</th>
+        <th style="width: 50%;">Ten Danh Muc</th>
+    </tr>
+    <tr>
+        <td>{{ category.Cateid }}</td>
+        <td>{{ category.CateName }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">
+                <tr>
+                    <th style="width: 25%;">Ma San Pham</th>
+                    <th style="width: 25%;">Ten San Pham</th>
+                    <th style="width: 25%;">Gia San Pham</th>
+                    <th style="width: 25%;">Picture</th>
+                </tr>
+                <tr *ngFor="let product of catalogService.getProductsByCategory(category.Cateid)">
+                    <td>{{ product.ProductId }}</td>
+                    <td>{{ product.ProductName }}</td>
+                    <td>{{ product.Price }}</td>
+                    <td><img [src]="product.Image" alt="{{ product.ProductName }}" width="100"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>

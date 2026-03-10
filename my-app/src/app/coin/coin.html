@@ -1,0 +1,78 @@
+<div class="crypto-container">
+  <h1 class="header">🪙 Cryptocurrency Tracker</h1>
+
+  <div class="error-message" *ngIf="errMessage">
+    <p>⚠️ {{ errMessage }}</p>
+  </div>
+  
+  <div class="loading-message" *ngIf="!data || data.length === 0">
+    <p>⏳ Loading cryptocurrency data...</p>
+  </div>
+  
+  <div class="coins-grid">
+    <div *ngFor="let coin of data" class="coin-card">
+      <div class="coin-header">
+        <h2 class="coin-name">{{ coin.name }}</h2>
+        <span class="coin-symbol">{{ coin.symbol }}</span>
+        <span class="coin-rank">Rank #{{ coin.rank }}</span>
+      </div>
+
+      <div class="coin-body">
+        <div class="price-section">
+          <label>Price (USD)</label>
+          <p class="price">${{ coin.price_usd | number:'1.2-2' }}</p>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <label>Market Cap</label>
+            <p>${{ coin.market_cap_usd | number:'1.0-0' }}</p>
+          </div>
+          <div class="stat">
+            <label>24h Volume</label>
+            <p>${{ coin['24h_volume_usd'] | number:'1.0-0' }}</p>
+          </div>
+        </div>
+
+        <div class="change-section">
+          <label>Price Changes</label>
+          <div class="changes">
+            <span 
+              class="change-badge"
+              [class.positive]="+(coin.percent_change_1h) > 0"
+              [class.negative]="+(coin.percent_change_1h) < 0">
+              1h: {{ coin.percent_change_1h }}%
+            </span>
+            <span 
+              class="change-badge"
+              [class.positive]="+(coin.percent_change_24h) > 0"
+              [class.negative]="+(coin.percent_change_24h) < 0">
+              24h: {{ coin.percent_change_24h }}%
+            </span>
+            <span 
+              class="change-badge"
+              [class.positive]="+(coin.percent_change_7d) > 0"
+              [class.negative]="+(coin.percent_change_7d) < 0">
+              7d: {{ coin.percent_change_7d }}%
+            </span>
+          </div>
+        </div>
+
+        <div class="supply-section">
+          <div class="supply-item">
+            <label>Available Supply</label>
+            <p>{{ coin.available_supply | number:'1.0-0' }}</p>
+          </div>
+          <div class="supply-item" *ngIf="coin.total_supply">
+            <label>Total Supply</label>
+            <p>{{ coin.total_supply | number:'1.0-0' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="coin-footer">
+        <small>Last updated: {{ (+coin.last_updated) * 1000 | date:'short' }}</small>
+      </div>
+    </div>
+  </div>
+</div>

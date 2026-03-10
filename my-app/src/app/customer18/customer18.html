@@ -1,0 +1,26 @@
+<div class="receipt-container"  *ngFor="let customerType of customerTypes">
+    <h1>CUSTOMER LIST</h1>
+    <div class="customer-type-section">
+        <h2>{{ customerType.CustomterTypeName }} (ID: {{ customerType.CustomerTypeId }})</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customerType.Customers">
+                    <td><img [src]="customer.Image" [alt]="customer.Name" class="customer-avatar"></td>
+                    <td>{{ customer.Id }}</td>
+                    <td>{{ customer.Name }}</td>
+                    <td>{{ customer.Email }}</td>
+                    <td>{{ customer.Age }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

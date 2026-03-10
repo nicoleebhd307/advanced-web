@@ -1,0 +1,46 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table tr{
+    background-color: #8bb6ff;
+    color: #00286c;
+    font-weight: 600;
+}
+
+table tbody tr {
+    padding: 12px;
+    text-align: left;
+    color: black;
+    border-bottom: 1px solid #8229be;
+    background-color: white;
+    font-weight: 200;
+
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+table tbody tr:hover {
+    background-color: #dbecff;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #29742d;
+}

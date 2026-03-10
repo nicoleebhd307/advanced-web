@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+  background-color: #d6d2d2;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* CARD */
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+}
+
+/* BADGE -25% */
+.percent {
+  background: #ffc107;
+  color: #fff;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* HEART */
+.wishlist {
+  height: 32px;
+  width: 32px;
+  background: #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE */
+.img-container {
+  position: relative;
+}
+
+.img-scale {
+  width: 160px;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* CONTENT */
+.product-detail-container {
+  padding: 15px;
+}
+
+/* BUTTON */
+.btn-warning {
+  border-radius: 8px;
+  padding: 10px;
+}

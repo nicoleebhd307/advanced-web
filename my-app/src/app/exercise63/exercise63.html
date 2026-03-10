@@ -1,0 +1,30 @@
+<div class="container63">
+  <div class="header63">
+    <h2>� Nhẫn Kim Cương Cao Cấp - Exercise 63</h2>
+    <button class="btn-view-cart" (click)="goToCart()">
+      🛒 Giỏ Hàng
+      <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    </button>
+  </div>
+
+  <div class="alert-success" *ngIf="message">{{ message }}</div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let p of products">
+      <img [src]="p.image" [alt]="p.name" class="product-img" />
+      <div class="product-info">
+        <h3>{{ p.name }}</h3>
+        <p class="description">{{ p.description }}</p>
+        <div class="specs" *ngIf="p.carat">
+          <span class="spec-tag">💎 {{ p.carat }}ct</span>
+          <span class="spec-tag">🔩 {{ p.material }}</span>
+          <span class="spec-tag">✨ {{ p.clarity }}</span>
+          <span class="spec-tag">🎨 Màu {{ p.color }}</span>
+        </div>
+        <p class="price">{{ p.price | number : "1.0-0" }} ₫</p>
+        <p class="stock">Còn lại: {{ p.stock }}</p>
+        <button class="btn-add" (click)="addToCart(p)">ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+</div>

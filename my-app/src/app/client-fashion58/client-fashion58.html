@@ -1,0 +1,46 @@
+<div class="client-container">
+  <h2>&#128248; Fashion Collection</h2>
+  <p class="err" *ngIf="errMessage">{{ errMessage }}</p>
+
+  <!-- SEARCH & FILTER -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchInput"
+      (ngModelChange)="onSearch()"
+      placeholder="Search by style..."
+    />
+    <select [(ngModel)]="selectedStyle" (ngModelChange)="onSelectStyle($event)">
+      <option value="">-- All Styles --</option>
+      <option *ngFor="let s of allStyles" [value]="s">{{ s }}</option>
+    </select>
+    <button (click)="searchInput=''; selectedStyle=''; applyFilter()">Reset</button>
+  </div>
+
+  <!-- GROUPED FASHION LIST -->
+  <div *ngFor="let style of styleList" class="style-group">
+    <h3 class="style-title">{{ style }}</h3>
+    <div class="card-grid">
+      <div class="card" *ngFor="let f of grouped[style]" (click)="openDetail(f)">
+        <img [src]="f.thumbnail" alt="{{ f.fashion_title }}" class="card-img" />
+        <div class="card-body">
+          <h4>{{ f.fashion_title }}</h4>
+          <span class="badge">{{ f.fashion_styles }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="styleList.length === 0" class="empty">No fashions found.</p>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" *ngIf="selectedFashion" (click)="closeDetail()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeDetail()">&#10005;</button>
+      <img [src]="selectedFashion.thumbnail" alt="detail" class="modal-img" />
+      <h3>{{ selectedFashion.fashion_title }}</h3>
+      <span class="badge">{{ selectedFashion.fashion_styles }}</span>
+      <div class="modal-details" [innerHTML]="selectedFashion.fashion_details"></div>
+    </div>
+  </div>
+</div>

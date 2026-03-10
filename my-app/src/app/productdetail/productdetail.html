@@ -1,0 +1,9 @@
+
+<button (click)="goBack()">Quay lại</button>
+<div *ngIf="product_selected">
+    <h1> Rau sạch nhà bà Nga </h1>
+    <p> Chi tiết sản phẩm </p>
+    <img [src]="product_selected.img" alt="{{product_selected.name}}" width="200"/>
+    <h2>{{product_selected.name}} | {{product_selected.id}}</h2>
+    <p>Price: {{product_selected.price | currency:'USD'}}</p>
+</div>

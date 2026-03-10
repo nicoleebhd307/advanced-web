@@ -1,0 +1,61 @@
+<div class="admin-container">
+  <h2>&#128084; Admin Fashion Management</h2>
+  <p class="err" *ngIf="errMessage">{{ errMessage }}</p>
+
+  <!-- LIST VIEW -->
+  <div *ngIf="view === 'list'">
+    <button class="btn-add" (click)="openAdd()">&#43; Add New Fashion</button>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Thumbnail</th>
+          <th>Title</th>
+          <th>Styles</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of fashions; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><img [src]="f.thumbnail" alt="thumb" class="thumb" /></td>
+          <td>{{ f.fashion_title }}</td>
+          <td><span class="badge">{{ f.fashion_styles }}</span></td>
+          <td class="actions">
+            <button class="btn-edit" (click)="openEdit(f)">&#9998; Edit</button>
+            <button class="btn-delete" (click)="delete(f._id)">&#128465; Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="fashions.length === 0">
+          <td colspan="5" style="text-align:center">No fashion items found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORM VIEW -->
+  <div *ngIf="view === 'form'" class="form-container">
+    <h3>{{ isEditing ? '&#9998; Edit Fashion' : '&#43; Add New Fashion' }}</h3>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" [(ngModel)]="form.fashion_title" placeholder="Fashion title" />
+    </div>
+    <div class="form-group">
+      <label>Styles</label>
+      <input type="text" [(ngModel)]="form.fashion_styles" placeholder="e.g. Casual, Sporty" />
+    </div>
+    <div class="form-group">
+      <label>Thumbnail URL</label>
+      <input type="text" [(ngModel)]="form.thumbnail" placeholder="https://..." />
+      <img *ngIf="form.thumbnail" [src]="form.thumbnail" class="preview" alt="preview" />
+    </div>
+    <div class="form-group">
+      <label>Details (WYSIWYG)</label>
+      <quill-editor [(ngModel)]="form.fashion_details" [styles]="{'height': '200px'}" placeholder="Enter fashion details..."></quill-editor>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save" (click)="save()">&#10003; Save</button>
+      <button class="btn-cancel" (click)="cancel()">&#10005; Cancel</button>
+    </div>
+  </div>
+</div>

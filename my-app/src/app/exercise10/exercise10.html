@@ -1,0 +1,46 @@
+<!-- <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <div style="border: 2px solid #ccc; padding: 20px; border-radius: 5px;">
+    <h2 style="text-align: center; color: blue; margin-bottom: 20px;">
+      Chuyển đổi Dương lịch thành Âm lịch
+    </h2>
+    
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
+      <select 
+        class="form-select" 
+        [(ngModel)]="selectedDay" 
+        style="width: 80px; padding: 5px;">
+        <option *ngFor="let day of days" [value]="day">{{day}}</option>
+      </select>
+      
+      <span>Ngày</span>
+      
+      <select 
+        class="form-select" 
+        [(ngModel)]="selectedMonth" 
+        style="width: 80px; padding: 5px;">
+        <option *ngFor="let month of months" [value]="month">{{month}}</option>
+      </select>
+      
+      <span>Tháng</span>
+      
+      <select 
+        class="form-select" 
+        [(ngModel)]="selectedYear" 
+        style="width: 100px; padding: 5px;">
+        <option *ngFor="let year of years" [value]="year">{{year}}</option>
+      </select>
+      
+      <span>Năm</span>
+      
+      <button 
+        (click)="convertToLunar()" 
+        style="padding: 6px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;">
+        Chuyển đổi
+      </button>
+    </div>
+    
+    <h3 style="text-align: center; color: blue; margin-top: 30px;">Âm Lịch</h3>
+    
+    <div [innerHTML]="lunarResult" style="margin-top: 10px;"></div>
+  </div>
+</div> -->

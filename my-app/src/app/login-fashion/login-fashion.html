@@ -1,0 +1,103 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Fashion Store</h2>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'login'" (click)="switchTab('login')">
+        Đăng nhập
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'register'" (click)="switchTab('register')">
+        Đăng ký
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="activeTab === 'login'" (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Tên đăng nhập</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          [(ngModel)]="usr"
+          placeholder="Nhập tên đăng nhập"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="pwd"
+          placeholder="Nhập mật khẩu"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="btn-login" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Đăng nhập</span>
+        <span *ngIf="isLoading">Đang xử lý...</span>
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form *ngIf="activeTab === 'register'" (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="regUsername">Tên đăng nhập</label>
+        <input
+          id="regUsername"
+          type="text"
+          name="regUsername"
+          [(ngModel)]="regUsr"
+          placeholder="Nhập tên đăng nhập"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Mật khẩu</label>
+        <input
+          id="regPassword"
+          type="password"
+          name="regPassword"
+          [(ngModel)]="regPwd"
+          placeholder="Nhập mật khẩu"
+          autocomplete="new-password"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="regPasswordConfirm">Xác nhận mật khẩu</label>
+        <input
+          id="regPasswordConfirm"
+          type="password"
+          name="regPasswordConfirm"
+          [(ngModel)]="regPwdConfirm"
+          placeholder="Nhập lại mật khẩu"
+          autocomplete="new-password"
+          required
+        />
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+      <button type="submit" class="btn-login" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Đăng ký</span>
+        <span *ngIf="isLoading">Đang xử lý...</span>
+      </button>
+    </form>
+  </div>
+</div>

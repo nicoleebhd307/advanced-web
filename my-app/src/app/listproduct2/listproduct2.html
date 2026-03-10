@@ -1,0 +1,30 @@
+
+<table border="1" cellpadding="5" cellspacing="0" align="center">
+    <thead>
+        <td colspan="4"><b>Chợ rau Linh Xuân</b></td>
+    </thead>
+    <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+    </thead>
+    <tbody *ngFor="let product of products" [ngClass]="{'selected': product.id === selected_id}"    >
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td [ngClass]="{'error_price': product.price < 0}">{{product.price | currency:'USD'}}</td>
+        <td><img [src]="product.img" alt="{{product.name}}" width="100"
+            title = 'click for details'
+            style = 'cursor: pointer'
+            (click) = 'viewDetail(product.id)'/>
+        </td>
+    </tbody>
+</table>
+<div>
+    <p style="font-weight: bold">Content:</p>
+    <ol>
+        <li>Dùng ngClass để đổi màu giá khi giá âm </li>
+        <li>Click ảnh để xem chi tiết sp, chuyển hướng menu bằng routerLink</li>
+        <li>Data trong service</li>
+    </ol>
+</div>
