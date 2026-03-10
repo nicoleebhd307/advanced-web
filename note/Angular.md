@@ -38,12 +38,16 @@ FE: giao diện
 BE: tổng hợp các WebServer và Database(MongoDB)   
 
 ## 
-1. `npm init` : create BE folder 
+manually  create BE folder -> `cd`
+1. `npm init` : create BE folder (`npm init -y` nếu chưa tạo được file package.json)
 2. `npm install express` : install express  
 3. create index.js (manually)  
-4. node .\index.js : run BE 
+4. `node .\index.js` : run BE 
 5. `ipconfig` : tim ip cua may <=> thay vafo localhost Wireless LAN adapter Wi-Fi:
    Connection-specific DNS Suffix  . :
    Link-local IPv6 Address . . . . . : fe80::dfe3:7205:14fc:7d83%10
    **IPv4 Address. . . . . . . . . . . : 192.168.1.123**
-6. `npm i -g nodemon` : 
+6. `npm install -g nodemon` : install Nodemon to auto restart after adjusting code 
+7. `nodemon index.js` : auto restart server 
+8. ` "scripts": {"start": "node index.js"} ` : thêm vào package.json để có thể run server bằng lệnh `npm start `
+
